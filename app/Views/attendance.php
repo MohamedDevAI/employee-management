@@ -7,8 +7,38 @@
         </div>
     </div>
 
+    <!-- Employee Info (Visible when viewing specific employee) -->
+    <div id="employeeInfoContainer" style="display: none;" class="mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 text-primary">Employee Record: <span id="info_name_title"></span></h5>
+                <a href="attendance.php" class="btn btn-sm btn-outline-secondary">View All Logs</a>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="text-muted d-block small text-uppercase">Public ID</label>
+                        <span id="info_id" class="fw-bold"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="text-muted d-block small text-uppercase">Punch ID</label>
+                        <span id="info_punch" class="fw-bold"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="text-muted d-block small text-uppercase">Department</label>
+                        <span id="info_dept" class="fw-bold"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="text-muted d-block small text-uppercase">Position</label>
+                        <span id="info_pos" class="fw-bold"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Quick Check-in/out -->
-    <div class="row mb-4">
+    <div class="row mb-4" id="quickCheckInRow">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary text-white">

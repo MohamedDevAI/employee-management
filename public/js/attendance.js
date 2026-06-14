@@ -1,6 +1,17 @@
 // Load attendance records
 function loadAttendance() {
-    fetch('../../public/api/attendance.php?action=list')
+    const urlParams = new URLSearchParams(window.location.search);
+    const employeeId = urlParams.get('employee_id');
+
+    let url = '../../public/api/attendance.php?action=list';
+    
+    // If we have an ID in the URL, filter the logs and load info
+    if (employeeId) {
+        url = `../../public/api/attendance.php?action=by_employee&employee_id=${employeeId}`;
+        loadEmployeeInfo(employeeId);
+    }
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -10,6 +21,32 @@ function loadAttendance() {
             }
         })
         .catch(error => console.error('Error:', error));
+}
+
+function loadEmployeeInfo(id) {
+    fetch(`../../public/api/employees.php?action=show&id=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const emp = data.employee;
+                document.getElementById('employeeInfoContainer').style.display = 'block';
+                
+                // Hide the global check-in box when viewing a specific person
+                const quickBox = document.getElementById('quickCheckInRow');
+                if (quickBox) quickBox.style.display = 'none';
+
+                document.getElementById('info_name_title').textContent = emp.employee_name;
+                document.getElementById('info_id').textContent = emp.employee_id;
+                document.getElementById('info_punch').textContent = emp.punch_id;
+                document.getElementById('info_dept').textContent = emp.department || '-';
+                document.getElementById('info_pos').textContent = emp.position || '-';
+                
+                // Update the page subtitle
+                const titleEl = document.querySelector('h2');
+                if (titleEl) titleEl.textContent = `Attendance Detail`;
+            }
+        })
+        .catch(error => console.error('Error fetching employee info:', error));
 }
 
 // Display attendance records

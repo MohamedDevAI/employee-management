@@ -32,10 +32,12 @@ class Attendance {
 
     // Get attendance by employee
     public function getByEmployeeId($employee_id, $days = 30) {
-        $query = "SELECT * FROM " . $this->table . " 
-                  WHERE employee_id = :employee_id 
-                  AND check_in_time >= DATE_SUB(NOW(), INTERVAL :days DAY)
-                  ORDER BY check_in_time DESC";
+        $query = "SELECT a.*, e.employee_name, e.employee_id, e.punch_id 
+                  FROM " . $this->table . " a
+                  JOIN employees e ON a.employee_id = e.id
+                  WHERE a.employee_id = :employee_id 
+                  AND a.check_in_time >= DATE_SUB(NOW(), INTERVAL :days DAY)
+                  ORDER BY a.check_in_time DESC";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':employee_id', $employee_id);

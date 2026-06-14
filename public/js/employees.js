@@ -82,7 +82,6 @@ function displayPagination(currentPage, totalPages) {
 // Add new employee
 function addEmployee() {
     const formData = new FormData(document.getElementById('addEmployeeForm'));
-    console.log("It is called");
     
     fetch('../../public/api/employees.php?action=create', {
         method: 'POST',

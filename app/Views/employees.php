@@ -39,16 +39,15 @@
                     </tr>
                 </thead>
                 <tbody id="employeesList">
-                    <!-- Populated by JavaScript -->
+                    
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Pagination -->
     <nav aria-label="Page navigation" id="paginationContainer">
         <ul class="pagination" id="pagination">
-            <!-- Populated by JavaScript -->
+        
         </ul>
     </nav>
 </div>

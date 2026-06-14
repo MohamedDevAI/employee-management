@@ -70,7 +70,7 @@
                             <input type="text" class="form-control" id="punch_id" name="punch_id" required>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="employee_name" class="form-label">Employee Name</label>
                             <input type="text" class="form-control" id="employee_name" name="employee_name" required>
@@ -113,7 +113,7 @@
                     <div class="mb-3">
                         <label for="salary" class="form-label">Salary</label>
                         <input type="number" class="form-control" id="salary" name="salary" step="0.01">
-                    </div>
+                    </div> -->
                 </form>
             </div>
             <div class="modal-footer">

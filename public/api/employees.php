@@ -1,8 +1,21 @@
 <?php
-require_once __DIR__ . '/../config/Database.php';
-require_once __DIR__ . '/../app/Controllers/EmployeeController.php';
+require_once __DIR__ . '/../../config/Database.php';
+require_once __DIR__ . '/../../app/Controllers/EmployeeController.php';
 
 header('Content-Type: application/json');
+
+// Check if database connection works
+$database = new Database();
+$db = $database->connect();
+
+if (!$db) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Database connection failed. Please run setup-database.php first.'
+    ]);
+    exit;
+}
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'list';
 $controller = new EmployeeController();
@@ -72,9 +85,11 @@ try {
             ]);
     }
 } catch (Exception $e) {
+    http_response_code(500);
     echo json_encode([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => $e->getMessage(),
+        'debug_info' => 'If error persists, visit: http://localhost/employee-management/test-connection.php'
     ]);
 }
 

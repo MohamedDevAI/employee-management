@@ -115,17 +115,25 @@ function openEditModal(id) {
                 const emp = data.employee;
                 document.getElementById('edit_id').value = emp.id;
                 document.getElementById('edit_employee_name').value = emp.employee_name;
+                document.getElementById('edit_iqama_id').value = emp.iqama_id;
+                document.getElementById('edit_nationality').value = emp.nationality;
                 document.getElementById('edit_email').value = emp.email || '';
                 document.getElementById('edit_phone').value = emp.phone || '';
                 document.getElementById('edit_department').value = emp.department || '';
                 document.getElementById('edit_position').value = emp.position || '';
+                document.getElementById('edit_hire_date').value = emp.hire_date || '';
                 document.getElementById('edit_salary').value = emp.salary || '';
 
-                const modal = new bootstrap.Modal(document.getElementById('editEmployeeModal'));
+                const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('editEmployeeModal'));
                 modal.show();
+            } else {
+                showAlert(data.message || 'Error fetching employee details', 'danger');
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error:', error);
+            showAlert('Error fetching employee details', 'danger');
+        });
 }
 
 // Update employee

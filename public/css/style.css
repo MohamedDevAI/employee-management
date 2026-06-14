@@ -22,13 +22,17 @@ body {
 /* Navbar */
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    
 }
 
 .navbar-brand {
     font-weight: 600;
     font-size: 1.3rem;
 }
-
+.nav-link {
+    color: black;       
+}
 /* Container */
 .container {
     max-width: 1200px;

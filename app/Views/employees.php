@@ -1,9 +1,10 @@
 <?php include 'header.php'; ?>
 
 <div class="container mt-5">
-    <div class="row mb-4">
+    <div class="row mb-4 align-items-end">
         <div class="col-md-8">
-            <h2>Employee Management</h2>
+            <h2 class="fw-bold tracking-tight">Employees</h2>
+            <p class="text-muted">Manage your workforce and view detailed records.</p>
         </div>
         <div class="col-md-4 text-end">
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
@@ -15,31 +16,33 @@
     <!-- Search Bar -->
     <div class="row mb-4">
         <div class="col-md-12">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search by name, ID, or iqama...">
+            <input type="text" id="searchInput" class="form-control shadow-sm" placeholder="Search for anything...">
         </div>
     </div>
 
     <!-- Employees Table -->
-    <div class="table-responsive">
-        <table class="table table-hover" id="employeesTable">
-            <thead class="table-dark">
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Name</th>
-                    <th>Punch ID</th>
-                    <th>Iqama ID</th>
-                    <th>Nationality</th>
-                    <th>Department</th>
-                    <th>Position</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="employeesList">
-                <!-- Populated by JavaScript -->
-            </tbody>
-        </table>
+    <div class="card overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0" id="employeesTable">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Punch ID</th>
+                        <th>Iqama ID</th>
+                        <th>Nationality</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeesList">
+                    <!-- Populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Pagination -->

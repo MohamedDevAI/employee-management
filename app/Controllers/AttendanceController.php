@@ -95,6 +95,32 @@ class AttendanceController {
         }
         return [];
     }
+
+    // Get monthly summary for timesheet
+    public function getMonthlyTimesheet($month, $employee_id = null) {
+        $query = "SELECT 
+                    e.employee_id, 
+                    e.employee_name, 
+                    e.department,
+                    COUNT(a.id) as total_days,
+                    SUM(a.work_hours) as total_hours
+                  FROM employees e
+                  LEFT JOIN attendance a ON e.id = a.employee_id 
+                  AND DATE_FORMAT(a.check_in_time, '%Y-%m') = :month
+                  WHERE e.is_deleted = FALSE";
+        
+        if ($employee_id) {
+            $query .= " AND e.id = :emp_id";
+        }
+        
+        $query .= " GROUP BY e.id ORDER BY e.employee_name ASC";
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':month', $month);
+        if ($employee_id) $stmt->bindParam(':emp_id', $employee_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 if (!function_exists('sanitize')) {

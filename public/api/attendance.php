@@ -45,6 +45,16 @@ try {
             ]);
             break;
 
+        case 'timesheet':
+            $month = sanitize($_GET['month'] ?? date('Y-m'));
+            $employee_id = sanitize($_GET['employee_id'] ?? null);
+            $records = $controller->getMonthlyTimesheet($month, $employee_id);
+            echo json_encode([
+                'success' => true,
+                'records' => $records
+            ]);
+            break;
+
         case 'by_date_range':
             $records = $controller->getByDateRange();
             echo json_encode([

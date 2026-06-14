@@ -10,10 +10,10 @@
     <script src="../../public/js/employees.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="employees.php">
-                <i class="bi bi-people"></i> Employee Management
+                <i class="bi bi-intersect me-2 text-primary"></i> HR Core
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>

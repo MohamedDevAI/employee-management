@@ -46,5 +46,5 @@
     </div>
 </div>
 
-<script src="../js/timesheet.js"></script>
+<script src="../../public/js/timesheet.js"></script>
 <?php include 'footer.php'; ?>

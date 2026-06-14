@@ -25,7 +25,7 @@ function displayAttendance(records) {
     records.forEach(record => {
         const checkInTime = new Date(record.check_in_time).toLocaleString();
         const checkOutTime = record.check_out_time ? new Date(record.check_out_time).toLocaleString() : '-';
-        const workHours = record.work_hours ? record.work_hours.toFixed(2) + ' hrs' : '-';
+        const workHours = record.work_hours ? parseFloat(record.work_hours).toFixed(2) + ' hrs' : '-';
         const status = record.check_out_time ? '<span class="badge badge-success">Checked Out</span>' : '<span class="badge badge-warning">Checked In</span>';
 
         const row = document.createElement('tr');

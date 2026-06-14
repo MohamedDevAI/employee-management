@@ -1,6 +1,6 @@
 // Load employees data
 function loadEmployees(page = 1) {
-    fetch('api/employees.php?action=list&page=' + page)
+    fetch('../../public/api/employees.php?action=list&page=' + page)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -84,7 +84,7 @@ function addEmployee() {
     const formData = new FormData(document.getElementById('addEmployeeForm'));
     console.log("It is called");
     
-    fetch('api/employees.php?action=create', {
+    fetch('../../public/api/employees.php?action=create', {
         method: 'POST',
         body: formData
     })
@@ -108,7 +108,7 @@ function addEmployee() {
 
 // Open edit modal
 function openEditModal(id) {
-    fetch(`api/employees.php?action=show&id=${id}`)
+    fetch(`../../public/api/employees.php?action=show&id=${id}`)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -132,7 +132,7 @@ function openEditModal(id) {
 function updateEmployee() {
     const formData = new FormData(document.getElementById('editEmployeeForm'));
 
-    fetch('api/employees.php?action=update', {
+    fetch('../../public/api/employees.php?action=update', {
         method: 'POST',
         body: formData
     })
@@ -158,7 +158,7 @@ function deleteEmployee(id) {
         const formData = new FormData();
         formData.append('id', id);
 
-        fetch('api/employees.php?action=delete', {
+        fetch('../../public/api/employees.php?action=delete', {
             method: 'POST',
             body: formData
         })
@@ -166,9 +166,10 @@ function deleteEmployee(id) {
         .then(data => {
             if (data.success) {
                 showAlert('Employee deleted successfully!', 'success');
-                loadEmployees();
+                const currentPage = document.querySelector('.page-item.active .page-link')?.textContent || 1;
+                loadEmployees(currentPage);
             } else {
-                showAlert(data.message || 'Error deleting employee', 'danger');
+                showAlert('SQL Error: ' + (data.message || 'Check console for details'), 'danger');
             }
         })
         .catch(error => {
@@ -196,7 +197,7 @@ function editField(cell, empId, field) {
         formData.append('id', empId);
         formData.append(field, newValue);
 
-        fetch('api/employees.php?action=update', {
+        fetch('../../public/api/employees.php?action=update', {
             method: 'POST',
             body: formData
         })
@@ -233,24 +234,27 @@ function viewAttendance(id) {
 }
 
 // Search employees
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    const keyword = this.value;
-    if (keyword.length > 0) {
-        fetch(`api/employees.php?action=search&q=${encodeURIComponent(keyword)}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    displayEmployees(data.employees);
-                    document.getElementById('pagination').innerHTML = '';
-                } else {
-                    showAlert('Error searching employees', 'danger');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    } else {
-        loadEmployees();
-    }
-});
+const searchInput = document.getElementById('searchInput');
+if (searchInput) {
+    searchInput.addEventListener('keyup', function() {
+        const keyword = this.value;
+        if (keyword.length > 0) {
+            fetch(`../../public/api/employees.php?action=search&q=${encodeURIComponent(keyword)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayEmployees(data.employees);
+                        document.getElementById('pagination').innerHTML = '';
+                    } else {
+                        showAlert('Error searching employees', 'danger');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            loadEmployees();
+        }
+    });
+}
 
 // Show alert message
 function showAlert(message, type = 'info') {
@@ -272,5 +276,7 @@ function showAlert(message, type = 'info') {
 
 // Load employees on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadEmployees();
+    if (document.getElementById('employeesList')) {
+        loadEmployees();
+    }
 });

@@ -58,6 +58,15 @@ class Employee {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Get employee by public Employee ID (e.g., EMP001)
+    public function getByEmployeeId($employee_id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE employee_id = :employee_id AND is_deleted = FALSE";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':employee_id', $employee_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Search employees
     public function search($keyword) {
         $query = "SELECT * FROM " . $this->table . " 

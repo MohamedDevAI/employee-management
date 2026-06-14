@@ -88,10 +88,13 @@ class EmployeeController {
     public function delete() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = sanitize($_POST['id'] ?? '');
-            if ($this->employee->softDelete($id)) {
-                return ['success' => true, 'message' => 'Employee deleted successfully'];
-            } else {
-                return ['success' => false, 'message' => 'Failed to delete employee'];
+            try {
+                if ($this->employee->softDelete($id)) {
+                    return ['success' => true, 'message' => 'Employee deleted successfully'];
+                }
+                return ['success' => false, 'message' => 'Query failed to execute'];
+            } catch (Exception $e) {
+                return ['success' => false, 'message' => 'Database Error: ' . $e->getMessage()];
             }
         }
     }
@@ -110,7 +113,9 @@ class EmployeeController {
 }
 
 // Helper function to sanitize input
-function sanitize($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
+if (!function_exists('sanitize')) {
+    function sanitize($data) {
+        return htmlspecialchars(strip_tags(trim($data)));
+    }
 }
 ?>

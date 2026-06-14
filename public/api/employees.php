@@ -86,14 +86,17 @@ try {
     }
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode([
+    $errorInfo = [
         'success' => false,
-        'message' => $e->getMessage(),
-        'debug_info' => 'If error persists, visit: http://localhost/employee-management/test-connection.php'
-    ]);
+        'message' => 'Internal Server Error',
+        'error_details' => $e->getMessage()
+    ];
+    echo json_encode($errorInfo);
 }
 
-function sanitize($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
+if (!function_exists('sanitize')) {
+    function sanitize($data) {
+        return htmlspecialchars(strip_tags(trim($data)));
+    }
 }
 ?>

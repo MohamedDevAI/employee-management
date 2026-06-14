@@ -2,15 +2,18 @@
 
 require_once __DIR__ . '/../../config/Database.php';
 require_once __DIR__ . '/../Models/Attendance.php';
+require_once __DIR__ . '/../Models/Employee.php';
 
 class AttendanceController {
     private $db;
     private $attendance;
+    private $employee;
 
     public function __construct() {
         $database = new Database();
         $this->db = $database->connect();
         $this->attendance = new Attendance($this->db);
+        $this->employee = new Employee($this->db);
     }
 
     // Get all attendance records
@@ -26,13 +29,20 @@ class AttendanceController {
     // Check in
     public function checkIn() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $employee_id = sanitize($_POST['employee_id'] ?? '');
+            $public_id = sanitize($_POST['employee_id'] ?? '');
             
-            if (!$employee_id) {
+            if (!$public_id) {
                 return ['success' => false, 'message' => 'Employee ID is required'];
             }
 
-            $this->attendance->employee_id = $employee_id;
+            // Resolve public Employee ID (e.g. 'EMP001') to database PK (e.g. 1)
+            $emp = $this->employee->getByEmployeeId($public_id);
+            
+            if (!$emp) {
+                return ['success' => false, 'message' => "Employee with ID '$public_id' not found"];
+            }
+
+            $this->attendance->employee_id = $emp['id'];
             
             if ($this->attendance->checkIn()) {
                 return ['success' => true, 'message' => 'Check-in recorded successfully'];
@@ -62,8 +72,14 @@ class AttendanceController {
     // Get today's attendance
     public function getTodayStatus() {
         if (isset($_GET['employee_id'])) {
-            $employee_id = sanitize($_GET['employee_id']);
-            return $this->attendance->getTodayAttendance($employee_id);
+            $public_id = sanitize($_GET['employee_id']);
+            
+            $emp = $this->employee->getByEmployeeId($public_id);
+            if (!$emp) {
+                return null;
+            }
+
+            return $this->attendance->getTodayAttendance($emp['id']);
         }
         return null;
     }
@@ -81,7 +97,9 @@ class AttendanceController {
     }
 }
 
-function sanitize($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
+if (!function_exists('sanitize')) {
+    function sanitize($data) {
+        return htmlspecialchars(strip_tags(trim($data)));
+    }
 }
 ?>

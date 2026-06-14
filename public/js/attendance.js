@@ -1,6 +1,6 @@
 // Load attendance records
 function loadAttendance() {
-    fetch('api/attendance.php?action=list')
+    fetch('../../public/api/attendance.php?action=list')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -54,7 +54,7 @@ function quickCheckIn() {
     const formData = new FormData();
     formData.append('employee_id', employeeId);
 
-    fetch('api/attendance.php?action=check_in', {
+    fetch('../../public/api/attendance.php?action=check_in', {
         method: 'POST',
         body: formData
     })
@@ -84,7 +84,7 @@ function quickCheckOut() {
     }
 
     // First get today's attendance
-    fetch(`api/attendance.php?action=today&employee_id=${encodeURIComponent(employeeId)}`)
+    fetch(`../../public/api/attendance.php?action=today&employee_id=${encodeURIComponent(employeeId)}`)
         .then(response => response.json())
         .then(data => {
             if (data.success && data.record) {
@@ -93,7 +93,7 @@ function quickCheckOut() {
                 const formData = new FormData();
                 formData.append('attendance_id', attendanceId);
 
-                fetch('api/attendance.php?action=check_out', {
+                fetch('../../public/api/attendance.php?action=check_out', {
                     method: 'POST',
                     body: formData
                 })
@@ -141,5 +141,7 @@ function showAlert(message, type = 'info') {
 
 // Load attendance on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadAttendance();
+    if (document.getElementById('attendanceList')) {
+        loadAttendance();
+    }
 });

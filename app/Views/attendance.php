@@ -55,6 +55,6 @@
     </div>
 </div>
 
-<script src="js/attendance.js"></script>
+<script src="../../public/js/attendance.js"></script>
 
 <?php include 'footer.php'; ?>

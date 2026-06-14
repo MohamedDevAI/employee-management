@@ -66,7 +66,9 @@ try {
     ]);
 }
 
-function sanitize($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
+if (!function_exists('sanitize')) {
+    function sanitize($data) {
+        return htmlspecialchars(strip_tags(trim($data)));
+    }
 }
 ?>

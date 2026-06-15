@@ -118,11 +118,16 @@ class Employee {
     // Update employee (inline editing)
     public function update() {
         $query = "UPDATE " . $this->table . " 
-                  SET employee_name = :employee_name, 
+                  SET employee_id = :employee_id,
+                      punch_id = :punch_id,
+                      employee_name = :employee_name, 
+                      iqama_id = :iqama_id,
+                      nationality = :nationality,
                       email = :email, 
                       phone = :phone, 
                       department = :department, 
                       position = :position,
+                      hire_date = :hire_date,
                       salary = :salary,
                       updated_at = NOW()
                   WHERE id = :id AND is_deleted = FALSE";
@@ -130,11 +135,16 @@ class Employee {
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':employee_id', $this->employee_id);
+        $stmt->bindParam(':punch_id', $this->punch_id);
         $stmt->bindParam(':employee_name', $this->employee_name);
+        $stmt->bindParam(':iqama_id', $this->iqama_id);
+        $stmt->bindParam(':nationality', $this->nationality);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':phone', $this->phone);
         $stmt->bindParam(':department', $this->department);
         $stmt->bindParam(':position', $this->position);
+        $stmt->bindParam(':hire_date', $this->hire_date);
         $stmt->bindParam(':salary', $this->salary);
 
         return $stmt->execute();

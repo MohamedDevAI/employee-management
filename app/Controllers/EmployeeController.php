@@ -69,11 +69,16 @@ class EmployeeController {
     public function update() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->employee->id = sanitize($_POST['id'] ?? '');
+            $this->employee->employee_id = sanitize($_POST['employee_id'] ?? '');
+            $this->employee->punch_id = sanitize($_POST['punch_id'] ?? '');
             $this->employee->employee_name = sanitize($_POST['employee_name'] ?? '');
+            $this->employee->iqama_id = sanitize($_POST['iqama_id'] ?? '');
+            $this->employee->nationality = sanitize($_POST['nationality'] ?? '');
             $this->employee->email = sanitize($_POST['email'] ?? '');
             $this->employee->phone = sanitize($_POST['phone'] ?? '');
             $this->employee->department = sanitize($_POST['department'] ?? '');
             $this->employee->position = sanitize($_POST['position'] ?? '');
+            $this->employee->hire_date = sanitize($_POST['hire_date'] ?? null);
             $this->employee->salary = sanitize($_POST['salary'] ?? 0);
 
             if ($this->employee->update()) {

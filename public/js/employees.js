@@ -113,6 +113,8 @@ function openEditModal(id) {
             if (data.success) {
                 const emp = data.employee;
                 document.getElementById('edit_id').value = emp.id;
+                document.getElementById('edit_employee_id').value = emp.employee_id;
+                document.getElementById('edit_punch_id').value = emp.punch_id;
                 document.getElementById('edit_employee_name').value = emp.employee_name;
                 document.getElementById('edit_iqama_id').value = emp.iqama_id;
                 document.getElementById('edit_nationality').value = emp.nationality;

@@ -21,14 +21,13 @@ body {
 
 /* Navbar */
 .navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);   
 }
 
 .navbar-brand {
     font-weight: 600;
     font-size: 1.3rem;
+    color: black;
 }
 .nav-link {
     color: black;       
@@ -304,4 +303,8 @@ footer {
 
 .editable-cell:hover {
     background-color: #f0f0f0;
+}
+
+.heading-txt{
+    color: black;
 }

@@ -289,22 +289,6 @@ footer {
     }
 }
 
-/* Edit Mode */
-.edit-mode {
-    background-color: #fff3cd;
-    transition: background-color 0.3s;
-}
-
-.editable-cell {
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 4px;
-}
-
-.editable-cell:hover {
-    background-color: #f0f0f0;
-}
-
 .heading-txt{
     color: black;
 }

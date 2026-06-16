@@ -188,54 +188,6 @@ function deleteEmployee(id) {
     }
 }
 
-// Edit field inline
-function editField(cell, empId, field) {
-    const currentValue = cell.textContent.trim();
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.className = 'form-control form-control-sm';
-    input.value = currentValue === '-' ? '' : currentValue;
-
-    cell.innerHTML = '';
-    cell.appendChild(input);
-    input.focus();
-
-    function saveChange() {
-        const newValue = input.value;
-        const formData = new FormData();
-        formData.append('id', empId);
-        formData.append(field, newValue);
-
-        fetch('../../public/api/employees.php?action=update', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                cell.textContent = newValue || '-';
-                showAlert('Field updated!', 'success');
-            } else {
-                cell.textContent = currentValue;
-                showAlert('Error updating field', 'danger');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            cell.textContent = currentValue;
-            showAlert('Error updating field', 'danger');
-        });
-    }
-
-    input.addEventListener('blur', saveChange);
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') saveChange();
-        if (e.key === 'Escape') {
-            cell.textContent = currentValue;
-        }
-    });
-}
-
 // View attendance
 function viewAttendance(id) {
     // This will redirect to attendance page with employee filter

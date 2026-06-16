@@ -26,7 +26,7 @@
             <table class="table table-hover mb-0" id="employeesTable">
                 <thead>
                     <tr>
-                        <th>Employee ID</th>
+
                         <th>Name</th>
                         <th>Punch ID</th>
                         <th>Iqama ID</th>
@@ -127,79 +127,7 @@
 </div>
 
 <!-- Edit Employee Modal (Inline) -->
-<div class="modal fade" id="editEmployeeModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Employee</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editEmployeeForm">
-                    <input type="hidden" id="edit_id" name="id">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_employee_id" class="form-label">Employee ID</label>
-                            <input type="text" class="form-control" id="edit_employee_id" name="employee_id" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_punch_id" class="form-label">Punch ID</label>
-                            <input type="text" class="form-control" id="edit_punch_id" name="punch_id" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_employee_name" class="form-label">Employee Name</label>
-                            <input type="text" class="form-control" id="edit_employee_name" name="employee_name" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="edit_email" name="email">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_iqama_id" class="form-label">Iqama ID</label>
-                            <input type="text" class="form-control" id="edit_iqama_id" name="iqama_id" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_phone" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="edit_phone" name="phone">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_nationality" class="form-label">Nationality</label>
-                            <input type="text" class="form-control" id="edit_nationality" name="nationality" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_department" class="form-label">Department</label>
-                            <input type="text" class="form-control" id="edit_department" name="department">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="edit_position" class="form-label">Position</label>
-                            <input type="text" class="form-control" id="edit_position" name="position">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="edit_salary" class="form-label">Salary</label>
-                            <input type="number" class="form-control" id="edit_salary" name="salary" step="0.01">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="edit_hire_date" class="form-label">Hire Date</label>
-                            <input type="date" class="form-control" id="edit_hire_date" name="hire_date">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="updateEmployee()">Save Changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 

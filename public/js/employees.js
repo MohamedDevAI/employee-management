@@ -26,7 +26,7 @@ function displayEmployees(employees) {
     employees.forEach(emp => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${emp.employee_id}</td>
+           
             <td><strong>${emp.employee_name}</strong></td>
             <td>${emp.punch_id}</td>
             <td>${emp.iqama_id}</td>

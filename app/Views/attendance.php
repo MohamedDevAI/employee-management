@@ -67,7 +67,7 @@
                 <table class="table table-hover">
                     <thead class="table-dark">
                         <tr>
-                            <th>Employee Name</th>
+                            <!-- <th>Employee Name</th> -->
                             <th>Employee ID</th>
                             <th>Punch ID</th>
                             <th>Check In</th>

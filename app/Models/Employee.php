@@ -24,7 +24,6 @@ class Employee {
         $this->conn = $db;
     }
 
-    // Get all employees (excluding soft deleted)
     public function getAll($page = 1, $limit = 10) {
         $offset = ($page - 1) * $limit;
         

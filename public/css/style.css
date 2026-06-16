@@ -5,6 +5,24 @@
     --danger-color: #dc3545;
     --warning-color: #ffc107;
     --dark-color: #212529;
+    --bg-body: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --navbar-bg: #ffffff;
+    --border-color: #dee2e6;
+    --text-muted: #6c757d;
+}
+
+[data-theme="dark"] {
+    --bg-body: #020617;
+    --text-color: #f8fafc;
+    --card-bg: #0f172a;
+    --navbar-bg: #020617;
+    --border-color: #1e293b;
+    --dark-color: #f8fafc;
+    --primary-color: #818cf8;
+    --secondary-color: #94a3b8;
+    --text-muted: #94a3b8;
 }
 
 * {
@@ -15,22 +33,26 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
 }
 
 /* Navbar */
 .navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);   
+    background-color: var(--navbar-bg) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .navbar-brand {
     font-weight: 600;
     font-size: 1.3rem;
-    color: black;
+    color: var(--text-color) !important;
 }
 .nav-link {
-    color: black;       
+    color: var(--text-color) !important;
 }
 /* Container */
 .container {
@@ -39,28 +61,41 @@ body {
 
 /* Tables */
 .table {
-    background-color: white;
+    background-color: var(--card-bg);
+    color: var(--text-color);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    border-color: var(--border-color);
 }
+.table-responsive {
+    overflow-x: hidden;
+}
+
 
 .table thead {
     background-color: var(--dark-color);
 }
 
 .table-hover tbody tr:hover {
-    background-color: #f5f5f5;
+    background-color: rgba(0,0,0,0.05);
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-/* Cards */
 .card {
+    background-color: var(--card-bg);
     border: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    width: 140vw;
+}
+
+.card-body {
+    padding: 1.5rem;
 }
 
 .card-header {
@@ -122,34 +157,50 @@ body {
 /* Forms */
 .form-control,
 .form-select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
     border-radius: 6px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
     padding: 0.75rem 1rem;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-control:focus,
 .form-select:focus {
+    background-color: var(--card-bg);
+    color: var(--text-color);
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 1;
 }
 
 .form-label {
     font-weight: 500;
     margin-bottom: 0.5rem;
-    color: #212529;
+    color: var(--text-color);
 }
 
 /* Modals */
 .modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
     border-radius: 8px;
     border: none;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .modal-header {
-    border-bottom: 1px solid #dee2e6;
-    background-color: #f8f9fa;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-body);
+    color: var(--text-color);
 }
 
 .modal-title {
@@ -160,7 +211,7 @@ body {
 #searchInput {
     border-radius: 25px;
     padding: 0.75rem 1.5rem;
-    border: 2px solid #dee2e6;
+    border: 2px solid var(--border-color);
     transition: all 0.3s;
 }
 
@@ -176,9 +227,10 @@ body {
 
 .page-link {
     border-radius: 6px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
     color: var(--primary-color);
     margin: 0 2px;
+    background-color: var(--card-bg);
 }
 
 .page-link:hover {
@@ -248,7 +300,7 @@ body {
 /* Footer */
 footer {
     margin-top: 50px;
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--border-color);
 }
 
 /* Responsive Design */
@@ -290,5 +342,5 @@ footer {
 }
 
 .heading-txt{
-    color: black;
+    color: var(--text-color);
 }

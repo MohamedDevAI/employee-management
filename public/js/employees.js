@@ -194,6 +194,35 @@ function viewAttendance(id) {
     window.location.href = `attendance.php?employee_id=${id}`;
 }
 
+// Dark Mode Logic
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeUI(savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeUI(newTheme);
+}
+
+function updateThemeUI(theme) {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    
+    if (theme === 'dark') {
+        btn.innerHTML = '<i class="bi bi-sun-fill me-1"></i> Light Mode';
+        btn.classList.replace('btn-outline-secondary', 'btn-outline-warning');
+    } else {
+        btn.innerHTML = '<i class="bi bi-moon-stars me-1"></i> Dark Mode';
+        btn.classList.replace('btn-outline-warning', 'btn-outline-secondary');
+    }
+}
+
 // Search employees
 const searchInput = document.getElementById('searchInput');
 if (searchInput) {
@@ -237,6 +266,13 @@ function showAlert(message, type = 'info') {
 
 // Load employees on page load
 document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
+    
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', toggleTheme);
+    }
+
     if (document.getElementById('employeesList')) {
         loadEmployees();
     }

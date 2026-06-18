@@ -4,7 +4,7 @@ A comprehensive PHP-based employee management system with attendance tracking, b
 
 ## Features
 
-✅ **Employee Management**
+**Employee Management**
 - Add new employees with complete details
 - List all employees with pagination
 - Search employees by name, ID, iqama, or email
@@ -12,20 +12,20 @@ A comprehensive PHP-based employee management system with attendance tracking, b
 - Soft delete functionality (reversible)
 - Employee fields: ID, Punch ID, Name, Iqama ID, Nationality, Email, Phone, Department, Position, Hire Date, Salary
 
-✅ **Attendance Tracking**
+**Attendance Tracking**
 - Separate check-in/check-out table
 - Quick check-in/out with employee ID
 - Track work hours automatically
 - View attendance history by date range
 - Real-time attendance records
 
-✅ **Database**
+**Database**
 - Well-structured MySQL database with proper relationships
 - Two main tables: `employees` and `attendance`
 - Soft delete support with `deleted_at` timestamp
 - Proper indexing for performance
 
-✅ **Design**
+**Design**
 - Clean, modern UI with Bootstrap 5
 - Responsive design for mobile and desktop
 - Intuitive navigation

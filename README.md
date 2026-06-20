@@ -211,10 +211,3 @@ The application works seamlessly on desktop, tablet, and mobile devices.
 - **Frontend:** HTML5, CSS3, JavaScript (ES6)
 - **Framework/Library:** Bootstrap 5, PDO
 
-## License
-
-Free to use and modify.
-
----
-
-For more help or customization, consult the code comments in each file. 

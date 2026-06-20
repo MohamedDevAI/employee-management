@@ -25,7 +25,7 @@ echo "<!DOCTYPE html>
 </head>
 <body>
 <div class='container'>
-    <h1>🚀 Employee Management - Database Setup</h1>";
+    <h1> Employee Management - Database Setup</h1>";
 
 $host = 'localhost';
 $user = 'root';
@@ -109,7 +109,7 @@ try {
     
     // Final message
     echo "<div class='step'>
-        <h3>✅ Database Setup Complete!</h3>
+        <h3>Database Setup Complete!</h3>
         <p>Your database is now ready to use.</p>
         <p><strong>Next steps:</strong></p>
         <ul>

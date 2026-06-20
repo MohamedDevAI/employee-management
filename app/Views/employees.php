@@ -126,9 +126,4 @@
     </div>
 </div>
 
-<!-- Edit Employee Modal (Inline) -->
-
-
-
-
 <?php include 'footer.php'; ?>
